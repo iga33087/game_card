@@ -1,0 +1,306 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+#main {
+  width:800px;
+  background-color:#fff;
+  margin:0 auto;
+  border-radius:10px;
+  box-shadow:0 0 10px #222;
+  overflow:hidden;
+  font-family:微軟正黑體;
+  position:relative;
+}
+.dc {
+  width:400px;
+  height:580px;
+  font-family:標楷體;
+  position:relative;
+
+}
+.dc-color {
+
+}
+.dc-name {
+  font-weight:bold;
+  font-size:30px;
+  position:absolute;
+  top:35;
+  left:45;
+}
+.dc-attr {
+  width:35px;
+  height:35px;
+  position:absolute;
+  top:37;
+  right:45;
+}
+.dc-star {
+  position:absolute;
+  top:85;
+  right:45;
+}
+.star {
+  width:25px;
+  height:25px;
+  margin:0 0 0 5px;
+}
+.dc-img {
+  width:286px;
+  height:286px;
+  
+  position:absolute;
+  top:126;
+  left:58;
+}
+.dc-race {
+  font-size:20px;
+  position:absolute;
+  top:445px;
+  left:35px;  
+}
+.dc-text {
+  width:320px;
+  height:55px;
+  overflow:hidden;
+  font-size:16px;
+  position:absolute;
+  top:469px;
+  left:40px;  
+  border-style: solid;
+  border-width: 0 0 1px 0;
+}
+.dc-add {
+  position:absolute;
+  top:525px;
+  right:40px;  
+}
+#main-h {
+  height:50px;
+  line-height:50px;
+  background-color:#CA7A2C;
+  color:#fff;
+  font-size:25px;
+  font-weight:bold;
+  text-align:center;
+}
+#d1 {
+  padding:10px 20px;
+  overflow:hidden;
+}
+#d1-l {
+  width:400px;
+  float:left;
+  box-shadow:0 0 10px #222;
+}
+#d1-r {
+  padding:0 0 0 50px;
+  float:left;
+}
+.d1-r-d {
+  padding:10px 0 10px 0;
+  font-size:25px;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+}
+.d1-r-d input,.d1-r-d select {
+  width:200px;
+  font-size:25px;
+  float:right;
+  font-family:微軟正黑體;
+}
+#dis_card {
+  margin:10px 0 0 0;
+  height:50px;
+  line-height:50px;
+  background-color:#CA7A2C;
+  color:#fff;
+  font-size:25px;
+  font-weight:bold;
+  text-align:center; 
+  cursor: pointer;
+  user-select: none;
+}
+#dis_card:hover {
+  box-shadow:0 0 5px #222;
+}
+#card_img {
+  font-size:16px;
+}
+#red {
+  color:#f00;
+  font-size:16px;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+<div id="main">
+  <div id="main-h">遊戲王卡生產器</div>
+  <div id="red">預覽完成後點擊卡片即可下載。</div>
+  <div id="d1">
+    <div id="d1-l"></div>
+	<div id="d1-r">
+	  <div class='d1-r-d'>
+	    <span>卡片類別:</span>
+		<select id="card_type">
+		  <option value ="monster">怪獸卡</option>
+		</select>
+	  </div>
+	  <div class='d1-r-d'>
+	    <span>卡片顏色:</span>
+		<select id="card_color">
+		  <option value ="img/c1.png">黃色</option>
+		  <option value ="img/c2.png">紫色</option>
+		  <option value ="img/c3.png">藍色</option>
+		  <option value ="img/c4.png">白色</option>
+		</select>
+	  </div>
+	  <div class='d1-r-d'>
+	    <span>名字:</span>
+		<input type="text" id="card_name" >
+	  </div>
+	  <div class='d1-r-d'>
+	    <span>屬性:</span>
+		<select id="card_attr">
+		  <option value ="img/attr/1.png">闇</option>
+		  <option value ="img/attr/2.png">光</option>
+		  <option value ="img/attr/3.png">地</option>
+		  <option value ="img/attr/4.png">水</option>
+		  <option value ="img/attr/5.png">風</option>
+		</select>
+	  </div>
+	  <div class='d1-r-d'>
+	    <span>星數:</span>
+		<select id="card_star">
+		  <option value ="1">1</option>
+		  <option value ="2">2</option>
+		  <option value ="3">3</option>
+		  <option value ="4">4</option>
+		  <option value ="5">5</option>
+		  <option value ="6">6</option>
+		  <option value ="7">7</option>
+		  <option value ="8">8</option>
+		  <option value ="9">9</option>
+		  <option value ="10">10</option>
+		</select>
+	  </div>
+	  <div class='d1-r-d'>
+	    <span>圖像:</span>
+		<input type="file" id="card_img" >
+	  </div>
+	  <div class='d1-r-d'>
+	    <span>族群:</span>
+		<input type="text" id="card_race" >
+	  </div>
+	  <div class='d1-r-d'>
+	    <span>敘述:</span>
+		<input type="text" id="card_text" >
+	  </div>
+	  <div class='d1-r-d'>
+	    <span>攻擊力:</span>
+		<input type="number" id="card_atk" >
+	  </div>
+	  <div class='d1-r-d'>
+	    <span>防禦力:</span>
+		<input type="number" id="card_def" >
+	  </div>
+	  <div id="dis_card" onclick=data2html()>預覽卡片</div>
+	</div>
+  </div>
+</div>
+</body>
+<script>
+var card_obj={
+  type:"monster",  //卡片類別
+  color:"img/c1.png",  //卡片顏色
+  name:"",  //名字
+  attr:"img/attr/1.png",  //屬性
+  star:1,  //星數
+  img:"",  //圖像
+  race:"",  //族群
+  text:"",  //文字敘述
+  atk:"",  //攻擊力
+  def:""  //防禦力
+}
+
+function card_output(x){  //把卡片資料輸出成HTML
+  var text="";
+  text+="<div class='dc' onclick=html2img()>"
+    text+="<img class='dc-color' src='"+x.color+"'>";
+	text+="<div class='dc-name'>"+x.name+"</div>";
+    text+="<img class='dc-attr' src='"+x.attr+"'>";
+	text+="<div class='dc-star'>";
+	  for(let i=1;i<=x.star;i++) {
+	    text+="<img class='star' src='img/star.png'>";
+	  }
+	text+="</div>";
+	text+="<img class='dc-img' src='"+x.img+"'>";
+	text+="<div class='dc-race'>【"+x.race+"】</div>";
+	text+="<div class='dc-text'>"+x.text+"</div>";
+	text+="<div class='dc-add'>ATK/"+x.atk+" DEF/"+x.def+"</div>";
+  text+="</div>";
+  document.getElementById("d1-l").innerHTML=text;
+}
+
+function data2html(){  //把資料寫入obj
+  var img=document.getElementById("card_img").files[0];
+  if(!img) {
+    alert("未選擇圖片");
+	return 0;
+  }
+  else if(img['type']!='image/gif'&&img['type']!='image/jpeg'&&img['type']!='image/png') {
+    alert("上傳的檔案並非圖片");
+	return 0;  
+  }
+  var url=window.URL.createObjectURL(img);
+  window.URL.revokeObjectURL(img);
+  card_obj.type=document.getElementById("card_type").value;
+  card_obj.color=document.getElementById("card_color").value;
+  card_obj.name=document.getElementById("card_name").value;
+  card_obj.attr=document.getElementById("card_attr").value;
+  card_obj.star=document.getElementById("card_star").value;
+  card_obj.img=url;
+  card_obj.race=document.getElementById("card_race").value;
+  card_obj.text=document.getElementById("card_text").value;
+  card_obj.atk=document.getElementById("card_atk").value;
+  card_obj.def=document.getElementById("card_def").value;
+  card_output(card_obj);
+}
+
+function html2img(){  //把HTML轉換成canvas
+  html2canvas(document.querySelectorAll(".dc")[0],{
+    useCORS:true
+  }).then(canvas => {
+    download(canvas);
+  });
+}
+
+function download(x){  //下載圖片
+  var anchor=document.createElement('a');
+  document.body.appendChild(anchor);
+  anchor.download=card_obj.name+'.png';
+  anchor.href=x.toDataURL("image/png");
+  anchor.click();
+  anchor.remove();
+}
+card_output(card_obj);
+</script>
+<script src="html2canvas.min.js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
