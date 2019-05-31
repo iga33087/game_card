@@ -20,7 +20,8 @@
 
 }
 .dc-color {
-
+  width:400px;
+  height:580px;
 }
 .dc-name {
   font-weight:bold;
@@ -28,6 +29,9 @@
   position:absolute;
   top:35;
   left:45;
+}
+.w {
+  color:#fff;
 }
 .dc-attr {
   width:35px;
@@ -155,6 +159,8 @@
 		  <option value ="img/c2.png">紫色</option>
 		  <option value ="img/c3.png">藍色</option>
 		  <option value ="img/c4.png">白色</option>
+		  <option value ="img/c5.png">灰色</option>
+		  <option value ="img/c6.png">黑色</option>
 		</select>
 	  </div>
 	  <div class='d1-r-d'>
@@ -169,6 +175,7 @@
 		  <option value ="img/attr/3.png">地</option>
 		  <option value ="img/attr/4.png">水</option>
 		  <option value ="img/attr/5.png">風</option>
+		  <option value ="img/attr/6.png">火</option>
 		</select>
 	  </div>
 	  <div class='d1-r-d'>
@@ -242,6 +249,12 @@ function card_output(x){  //把卡片資料輸出成HTML
 	text+="<div class='dc-add'>ATK/"+x.atk+" DEF/"+x.def+"</div>";
   text+="</div>";
   document.getElementById("d1-l").innerHTML=text;
+  if(x.color=="img/c6.png") {
+    document.querySelectorAll(".dc-name")[0].classList.add("w");
+  }
+  else {
+    document.querySelectorAll(".dc-name")[0].classList.remove("w");
+  }
 }
 
 function data2html(){  //把資料寫入obj
