@@ -306,8 +306,8 @@ function html2img(){  //把HTML轉換成canvas
 function download(x){  //下載圖片
   var anchor=document.createElement('a');
   document.body.appendChild(anchor);
-  anchor.download=card_obj.name+'.png';
-  anchor.href=x.toDataURL("image/png");
+  anchor.download=card_obj.name+'.jpeg';
+  anchor.href=x.toDataURL("image/jpeg");
   anchor.click();
   anchor.remove();
 }
