@@ -53,10 +53,16 @@
 .dc-img {
   width:286px;
   height:286px;
-  
   position:absolute;
   top:126;
   left:58;
+}
+.b {
+  width:285px;
+  height:289px;
+  position:absolute;
+  top:125;
+  left:58; 
 }
 .dc-race {
   font-size:20px;
@@ -256,9 +262,11 @@ function card_output(x){  //把卡片資料輸出成HTML
   document.getElementById("d1-l").innerHTML=text;
   if(x.color=="img/c6.png") {
     document.querySelectorAll(".dc-name")[0].classList.add("w");
+    document.querySelectorAll(".dc-img")[0].classList.add("b");
   }
   else {
     document.querySelectorAll(".dc-name")[0].classList.remove("w");
+    document.querySelectorAll(".dc-img")[0].classList.remove("b");
   }
 }
 
