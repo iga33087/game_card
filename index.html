@@ -240,7 +240,12 @@ function card_output(x){  //把卡片資料輸出成HTML
     text+="<img class='dc-attr' src='"+x.attr+"'>";
 	text+="<div class='dc-star'>";
 	  for(let i=1;i<=x.star;i++) {
-	    text+="<img class='star' src='img/star.png'>";
+	    if(x.color=="img/c6.png") {
+	      text+="<img class='star' src='img/black_star.png'>";
+		}
+		else {
+		  text+="<img class='star' src='img/star.png'>";
+		}
 	  }
 	text+="</div>";
 	text+="<img class='dc-img' src='"+x.img+"'>";
