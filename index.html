@@ -77,6 +77,12 @@
   left:35px;  
   font-weight: bold;
 }
+.recemort {
+  position:absolute;
+  top:85;
+  right:45;
+  font-size:21px;
+}
 .dc-text {
   width:320px;
   height:55px;
@@ -89,6 +95,11 @@
   border-style: solid;
   border-width: 0 0 1px 0;
   font-weight: bold;
+}
+.m {
+  top:445px;
+  left:40px; 
+  border-width: 0;
 }
 .dc-add {
   position:absolute;
@@ -144,13 +155,16 @@
 #dis_card:hover {
   box-shadow:0 0 5px #222;
 }
-#card_img {
+#card_img,#card_img_mort {
   font-size:16px;
 }
 #red {
   color:#f00;
   font-size:16px;
   text-align:center;
+}
+#d1-mort {
+  display:none;
 }
 </style>
 </head>
@@ -163,10 +177,14 @@
 	<div id="d1-r">
 	  <div class='d1-r-d'>
 	    <span>卡片類別:</span>
-		<select id="card_type">
+		<select id="card_type" onchange=list_c(this.value)>
 		  <option value ="monster">怪獸卡</option>
+		  <option value ="magic">魔法卡</option>
+		  <option value ="trap">陷阱卡</option>
 		</select>
 	  </div>
+	  
+	  <div id="d1-m">
 	  <div class='d1-r-d'>
 	    <span>卡框:</span>
 		<select id="card_color">
@@ -234,13 +252,44 @@
 	  </div>
 	  <div id="dis_card" onclick=data2html()>預覽卡片</div>
 	</div>
+	
+	<div id="d1-mort">
+      <div class='d1-r-d'>
+	    <span>卡框:</span>
+		<select id="card_color_mort">
+		  <option value ="img/c1.png">黃色</option>
+		  <option value ="img/c2.png">紫色</option>
+		  <option value ="img/c3.png">藍色</option>
+		  <option value ="img/c4.png">白色</option>
+		  <option value ="img/c5.png">灰色</option>
+		  <option value ="img/c6.png">黑色</option>
+		  <option value ="img/c7.png">綠色</option>
+		</select>
+	  </div>
+	  <div class='d1-r-d'>
+	    <span>名字:</span>
+		<input type="text" id="card_name_mort" >
+	  </div>
+	  <div class='d1-r-d'>
+	    <span>圖像:</span>
+		<input type="file" id="card_img_mort" >
+	  </div>
+	  <div class='d1-r-d'>
+	    <span>敘述:</span>
+		<input type="text" id="card_text_mort" >
+	  </div>
+	  <div id="dis_card" onclick=data2html_mort()>預覽卡片</div>
+	</div>
+	
+	</div>
+	
   </div>
 </div>
 </body>
 <script>
 var card_obj={
   type:"monster",  //卡片類別
-  color:"img/c1.png",  //卡框
+  color:"img/c1.png",  //卡片顏色
   name:"",  //名字
   attr:"img/attr/1.png",  //屬性
   star:1,  //星數
@@ -251,7 +300,7 @@ var card_obj={
   def:""  //防禦力
 }
 
-function card_output(x){  //把卡片資料輸出成HTML
+function card_output(x){  //把卡片資料輸出成HTML--怪獸卡
   var text="";
   text+="<div class='dc' onclick=html2img()>"
     text+="<img class='dc-color' src='"+x.color+"'>";
@@ -275,7 +324,7 @@ function card_output(x){  //把卡片資料輸出成HTML
   document.getElementById("d1-l").innerHTML=text;
   if(x.color=="img/c6.png") {
     document.querySelectorAll(".dc-name")[0].classList.add("w");
-    document.querySelectorAll(".dc-img")[0].classList.add("b");
+	document.querySelectorAll(".dc-img")[0].classList.add("b");
   }
   else {
     document.querySelectorAll(".dc-name")[0].classList.remove("w");
@@ -283,7 +332,38 @@ function card_output(x){  //把卡片資料輸出成HTML
   }
 }
 
-function data2html(){  //把資料寫入obj
+function card_output_mort(x){  //把卡片資料輸出成HTML--魔法卡/陷阱卡
+  var xattr="";
+  var race="";
+  if(x.type=="magic") {
+    xattr="img/attr/7.png";
+	race="魔法卡"; 
+  }
+  else{
+    xattr="img/attr/8.png";
+	race="陷阱卡";    
+  }
+  var text="";
+  text+="<div class='dc' onclick=html2img()>"
+    text+="<img class='dc-color' src='"+x.color+"'>";
+	text+="<div class='dc-name'>"+x.name+"</div>";
+	text+="<div class='dc-rece recemort'>【"+race+"】</div>";
+    text+="<img class='dc-attr' src='"+xattr+"'>";
+	text+="<img class='dc-img' src='"+x.img+"'>";
+	text+="<div class='dc-text m'>"+x.text+"</div>";
+  text+="</div>";
+  document.getElementById("d1-l").innerHTML=text;
+  if(x.color=="img/c6.png") {
+    document.querySelectorAll(".dc-name")[0].classList.add("w");
+	document.querySelectorAll(".dc-img")[0].classList.add("b");
+  }
+  else {
+    document.querySelectorAll(".dc-name")[0].classList.remove("w");
+    document.querySelectorAll(".dc-img")[0].classList.remove("b");
+  }
+}
+
+function data2html(){  //把資料寫入obj--怪獸卡
   var img=document.getElementById("card_img").files[0];
   if(!img) {
     alert("未選擇圖片");
@@ -308,6 +388,41 @@ function data2html(){  //把資料寫入obj
   card_output(card_obj);
 }
 
+function data2html_mort(){  //把資料寫入obj--魔法卡/陷阱卡
+  var img=document.getElementById("card_img_mort").files[0];
+  if(!img) {
+    alert("未選擇圖片");
+	return 0;
+  }
+  else if(img['type']!='image/gif'&&img['type']!='image/jpeg'&&img['type']!='image/png') {
+    alert("上傳的檔案並非圖片");
+	return 0;  
+  }
+  var url=window.URL.createObjectURL(img);
+  window.URL.revokeObjectURL(img);
+  card_obj.type=document.getElementById("card_type").value;
+  card_obj.color=document.getElementById("card_color_mort").value;
+  card_obj.name=document.getElementById("card_name_mort").value;
+  card_obj.img=url;
+  card_obj.text=document.getElementById("card_text_mort").value;
+  card_output_mort(card_obj);
+}
+
+function list_c(x){  //改變輸入列表
+  var input=document.querySelectorAll("#d1-r input");
+  if(x=="monster") {
+    document.getElementById("d1-m").style.display="block";
+	document.getElementById("d1-mort").style.display="none";
+  }
+  else {
+    document.getElementById("d1-m").style.display="none";
+	document.getElementById("d1-mort").style.display="block";  
+  }
+  for(let i=0;i<input.length;i++) {
+    input[i].value="";
+  }
+}
+
 function html2img(){  //把HTML轉換成canvas
   html2canvas(document.querySelectorAll(".dc")[0],{
     useCORS:true
@@ -320,7 +435,7 @@ function download(x){  //下載圖片
   var anchor=document.createElement('a');
   document.body.appendChild(anchor);
   anchor.download=card_obj.name+'.jpeg';
-  anchor.href=x.toDataURL("image/jpeg");
+  anchor.href=x.toDataURL("image/jpeg",1);
   anchor.click();
   anchor.remove();
 }
@@ -328,11 +443,6 @@ card_output(card_obj);
 </script>
 <script src="html2canvas.min.js"></script>
 </html>
-
-
-
-
-
 
 
 
