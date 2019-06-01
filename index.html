@@ -42,14 +42,19 @@
   right:45;
 }
 .dc-star {
+  width:312px;
   position:absolute;
   top:85;
   right:45;
 }
 .star {
-  width:25px;
-  height:25px;
-  margin:0 0 0 5px;
+  width:22px;
+  height:22px;
+  margin:0 0 0 2px;
+  float:right;
+}
+.bs {
+  float:left;
 }
 .dc-img {
   width:286px;
@@ -163,7 +168,7 @@
 		</select>
 	  </div>
 	  <div class='d1-r-d'>
-	    <span>卡片顏色:</span>
+	    <span>卡框:</span>
 		<select id="card_color">
 		  <option value ="img/c1.png">黃色</option>
 		  <option value ="img/c2.png">紫色</option>
@@ -202,6 +207,9 @@
 		  <option value ="8">8</option>
 		  <option value ="9">9</option>
 		  <option value ="10">10</option>
+		  <option value ="11">11</option>
+		  <option value ="12">12</option>
+		  <option value ="13">13</option>
 		</select>
 	  </div>
 	  <div class='d1-r-d'>
@@ -232,7 +240,7 @@
 <script>
 var card_obj={
   type:"monster",  //卡片類別
-  color:"img/c1.png",  //卡片顏色
+  color:"img/c1.png",  //卡框
   name:"",  //名字
   attr:"img/attr/1.png",  //屬性
   star:1,  //星數
@@ -252,7 +260,7 @@ function card_output(x){  //把卡片資料輸出成HTML
 	text+="<div class='dc-star'>";
 	  for(let i=1;i<=x.star;i++) {
 	    if(x.color=="img/c6.png") {
-	      text+="<img class='star' src='img/black_star.png'>";
+	      text+="<img class='star bs' src='img/black_star.png'>";
 		}
 		else {
 		  text+="<img class='star' src='img/star.png'>";
